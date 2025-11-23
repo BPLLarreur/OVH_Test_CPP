@@ -35,18 +35,34 @@ C_Scheduler::C_Scheduler(const std::string &secret)
 //==========================================================================================
 void C_Scheduler::f_send_words_to_robots(std::vector<C_Robot> &robots)
 {
-    std::srand(std::time(0)); // init random generator
-
-    int total = static_cast<int>(SecretsWords.size()); // total words count in secret sentence
-    for (auto &r : robots)
-        r.f_set_total_words(total); // inform each robot of total words count
-
-    for (int i = 0; i < (int)SecretsWords.size(); ++i) // for each word in secret, send it to a random robot
+    if (robots.empty())
     {
-        const auto &word = SecretsWords[i];
-        int robotIndex = std::rand() % robots.size(); // choosen randomly
-        robots[robotIndex].f_rec_word(i, word);
-        cout << "Init robot " << robotIndex << " received [" << i << "] '" << word << "'" << endl;
+        return;
+    }
+
+    std::srand(std::time(0)); // init random generator
+    std::vector<int> remaining;
+    remaining.reserve(SecretsWords.size()); // Build list of remaining words
+
+    for (int i = 0; i < (int)SecretsWords.size(); ++i)
+    {
+        remaining.push_back(i);
+    }
+
+    while (!remaining.empty()) // Loop over robots and assign random word
+    {
+        for (int j = 0; j < (int)robots.size() && !remaining.empty(); ++j)
+        {
+            int pos = std::rand() % remaining.size();
+            int wordIndex = remaining[pos];
+            const auto &word = SecretsWords[wordIndex];
+
+            robots[j].f_rec_word(wordIndex, word);
+            cout << "Init robot " << j << " received [" << wordIndex << "] '" << word << "'" << endl;
+
+            // remove the assigned word from the remaining pool
+            remaining.erase(remaining.begin() + pos);
+        }
     }
 }
 

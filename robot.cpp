@@ -46,9 +46,18 @@ void C_Robot::f_comm(vector<C_Robot> &robots)
             if (words_received.find(index) == words_received.end()) // if index not in robot's map, add it
                 words_received[index] = w;
         }
-        // if current robot doesn't know total word count and another one does, get it
-        if (total_words == -1 && otherRobot.total_words != -1)
-            total_words = otherRobot.total_words;
+    }
+
+    if (total_words == -1)
+    {
+        for (const auto &i : words_received)
+        {
+            if (i.second.find('.') != std::string::npos)
+            {
+                total_words = i.first + 1;
+                break;
+            }
+        }
     }
 }
 
@@ -110,15 +119,4 @@ void C_Robot::f_write_to_file(const std::string &filename) const
         file << secret << std::endl;
         file.close();
     }
-}
-
-//================================f_write_to_file()=========================================
-// desc: set integer total_words                                                           =
-// input : integer total                                                                   =
-// ouput : void                                                                            =
-//==========================================================================================
-
-void C_Robot::f_set_total_words(int total)
-{
-    total_words = total;
 }

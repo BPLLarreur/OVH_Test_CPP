@@ -14,7 +14,6 @@ public:
     bool f_secret_ok() const;
     std::string f_get_secret() const;
     void f_write_to_file(const std::string &filename) const;
-    void f_set_total_words(int total);
 
 private:
     int id;
