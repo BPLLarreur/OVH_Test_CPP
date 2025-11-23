@@ -46,6 +46,13 @@ void C_Robot::f_comm(vector<C_Robot> &robots)
             if (words_received.find(index) == words_received.end()) // if index not in robot's map, add it
                 words_received[index] = w;
         }
+
+        cout << "my secret is now : ";
+        for (const auto &i : words_received)
+        {
+            cout << "[" << i.first << "] '" << i.second << "' ";
+        }
+        cout << endl;
     }
 
     if (total_words == -1)
