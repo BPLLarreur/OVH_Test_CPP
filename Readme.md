@@ -1,6 +1,6 @@
 # OVH TEST ROBOTS
 
-**In the following project i tried to answer this problem :**
+**In the following project, I tried to answer this problem :**
 
 6 robots must collaborate to record this secret: “Hidden beneath the old oak tree, golden coins patiently await discovery.” Each word of the secret is sent sequentially to one of the robots, with the receiving robot chosen randomly for each word. This means no single robot possesses the entire secret. All robots can communicate with each other, but only through messages. Please simulate these robots and write an algorithm that allows them to rebuild the secret. The only thing robots know about the secret is that it ends with the only period. Once the secret is rebuilt, only one robot should write it to a well-known file. All robots can be simulated in the same executable for simplicity.
 

@@ -9,6 +9,7 @@ class C_Robot
 {
 public:
     C_Robot(int id);
+    int f_get_id() const;
     void f_rec_word(int index, const std::string &word);
     void f_comm(std::vector<C_Robot> &robots);
     bool f_secret_ok() const;

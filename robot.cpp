@@ -8,6 +8,11 @@ using namespace std;
 
 C_Robot::C_Robot(int id) : id(id) {}
 
+int C_Robot::f_get_id() const
+{
+    return id;
+}
+
 //==================================f_rec_word()============================================
 // desc: Receive a word from the scheduler and bind it to a robot                          =
 // input : integer index to identify the word                                              =
@@ -34,7 +39,6 @@ void C_Robot::f_comm(vector<C_Robot> &robots)
 {
     for (auto &otherRobot : robots) // through all robots in vector
     {
-        cout << "I'm Robot " << this->id << " and I communicate " << endl;
 
         if (otherRobot.id == this->id) // if itself, next robot
             continue;

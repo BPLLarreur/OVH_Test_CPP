@@ -79,6 +79,8 @@ void C_Scheduler::f_rebuild_secret(std::vector<C_Robot> &robots, const std::stri
     {
         for (auto &robot : robots) // each robot call its comm function
         {
+            // Print which robot is initiating communication
+            cout << "Scheduler: Robot " << robot.f_get_id() << " is calling f_comm" << endl;
             robot.f_comm(robots);
             if (robot.f_secret_ok()) // after each comm check if secrete complete
             {
