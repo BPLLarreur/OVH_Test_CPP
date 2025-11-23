@@ -46,7 +46,7 @@ void C_Scheduler::f_send_words_to_robots(std::vector<C_Robot> &robots)
         const auto &word = SecretsWords[i];
         int robotIndex = std::rand() % robots.size(); // choosen randomly
         robots[robotIndex].f_rec_word(i, word);
-        cout << "robot " << robotIndex << " received [" << i << "] '" << word << "'" << endl;
+        cout << "Init robot " << robotIndex << " received [" << i << "] '" << word << "'" << endl;
     }
 }
 

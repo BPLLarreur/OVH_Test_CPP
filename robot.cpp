@@ -34,6 +34,8 @@ void C_Robot::f_comm(vector<C_Robot> &robots)
 {
     for (auto &otherRobot : robots) // through all robots in vector
     {
+        cout << "I'm Robot " << this->id << " and I communicate " << endl;
+
         if (otherRobot.id == this->id) // if itself, next robot
             continue;
 
